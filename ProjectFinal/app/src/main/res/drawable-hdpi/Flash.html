@@ -1,0 +1,49 @@
+
+<!-- saved from url=(0038)http://172.16.13.236/kludge/flash.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+		<title>Flash</title>
+		<style>
+		div{
+			margin-left: 45%;
+			position: center;
+			height:100px;
+		}
+		#del1{
+			font-size: 100px;
+		}
+		</style>
+	</head>
+
+	<body>
+	<h3 style="position:center;margin-left:40%"> Are you first enough? Stop me at 1000 </h3>
+	<div><p id="del1">33</p></div>
+	<script src="./Flash_files/jquery.js"></script>
+		 <script>
+	 	var i=1;
+        var myvar= setInterval(function(){func()},0.001);
+		function func(){
+    		if(i!=1001){
+				i=i+1;	}
+			else
+				i=1;
+    	document.getElementById("del1").innerHTML = i;
+  		}
+
+  		function done() {
+  			clearInterval(myvar);
+  			$.post("next.php", {pass: i, level: 2}, function(data, status) {
+  				if(status!="success") {
+  					if(i==1000) {
+  						alert("Good job!");
+  						window.location="home.php";
+  					} else {
+  						alert("Oops! Just missed it!");
+  					}
+  				}
+  			});
+  		}
+	 </script>
+	 <button style="margin-left: 45%;" onclick="done();">click me</button>
+	 <button onclick="window.location.href=window.location.href">Reload</button>
+	
+</body></html>
